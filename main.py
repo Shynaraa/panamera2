@@ -121,12 +121,15 @@ class Main(object):
     data: list[list[str]] = []
     sentences = corpus.split(".")
     for i in range(len(sentences)):
+      print('1. ' + sentences[i])
       sentences[i] = sentences[i].strip()
       sentence = sentences[i].split()
-      x = [word.strip(string.punctuation) for word in sentence
-           if word not in stop_words]
-      x = [word.lower() for word in x]
-      data.append(x)
+      w = []
+      for word in sentence:
+        if word not in stop_words:
+          word = word.strip(string.punctuation)
+          w.append(word.lower())
+      data.append(w)
     return data
 
   # this function help us to take our data and train it, we divide words from sentences, sort, count
